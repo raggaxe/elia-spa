@@ -11,8 +11,6 @@ from flask import (
 )
 from flask_dance.contrib.facebook import facebook
 
-
-
 mod = Blueprint("index_routes", __name__)
 
 
@@ -24,9 +22,9 @@ def index():
 
 
 
-@mod.route("/discordJosh", methods=["GET", "POST"])
-def josh():
-    return render_template("controladores/joshGudwin.html")
+@mod.route("/mail-mkt", methods=["GET"])
+def mkt_maes():
+    return render_template("mkt-mail.html")
 
 
 @mod.route("/privacidade", methods=["GET", "POST"])

@@ -1,0 +1,11 @@
+.mail-body{
+    width:80%;
+    height:5500px;
+    background-image: url("/static/img/email-marketing.png") ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% ;
+    margin:0 auto;
+}
+
+
