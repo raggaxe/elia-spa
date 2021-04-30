@@ -7,15 +7,10 @@ from dotenv import load_dotenv
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from Controllers import (
-    AdminRoutes,
-    AuthRoutes,
     IndexRoutes,
-    UserRoutes,
-    SquadRoutes,
-    OverlayRoutes,
     DefaultRoutes,
 )
-from Services.playersAPI import *
+
 import humanfriendly
 
 load_dotenv()
@@ -51,12 +46,7 @@ app.jinja_env.add_extension("jinja2.ext.do")
 socketio = SocketIO(app, async_handlers=True)
 
 blueprints = [
-    AdminRoutes.mod,
-    AuthRoutes.mod,
     IndexRoutes.mod,
-    UserRoutes.mod,
-    SquadRoutes.mod,
-    OverlayRoutes.mod,
 ]
 
 for bp in blueprints:
@@ -71,69 +61,8 @@ app.errorhandler(500)(DefaultRoutes.errorhandler)
 
 @app.context_processor
 def my_utility_processor():
-    def searchDia(timeStamp):
-        dt_object = datetime.fromtimestamp(timeStamp).strftime("%d %b")
-        return dt_object
-
-    def searchHora(timeStamp):
-        dt_object = datetime.fromtimestamp(timeStamp).strftime("%H:%M")
-        return dt_object
-
-    def lastUpdate(timeStamp):
-        dt_object = datetime.fromtimestamp(timeStamp).strftime("%d/%m/%Y às %H:%M:%S")
-        return dt_object
-
-    def updateTime(timeStamp):
-        duration = (timeStamp - datetime.now()) * -1
-        return humanfriendly.format_timespan(duration)
-
-    def searchAvatar(token):
-        try:
-            dataUser = CheckuserRedis(auth=token).GetUser()
-            return dataUser["foto"]
-
-        except Exception as e:
-            return False
-
-    def searchUser(token):
-        try:
-            user = CheckuserRedis(auth=token).GetUser()
-            return user["player"]
-        except Exception as e:
-            return str(e)
-
-    def searchUsernameByToken(token):
-        try:
-            if token == session["idUser"]:
-                return "Você"
-            else:
-                dataUser = CheckuserRedis(auth=token).GetUser()
-                return dataUser["username"]
-        except Exception as e:
-            return str(e)
-
-    def searchPhotoByUsername(token):
-        try:
-            dataUser = CheckuserRedis(auth=token).GetUser()
-            return dataUser["foto"]
-        except Exception as e:
-            return str(e)
-
-    def GeradorTokenSessionOverlay():
-        session["overlay"] = hex(random.getrandbits(128)).lstrip("0x")
-        CheckuserRedis(auth=session["idUser"]).abriSession(session["overlay"])
-        return session["overlay"]
 
     return dict(
-        searchPhotoByUsername=searchPhotoByUsername,
-        updateTime=updateTime,
-        lastUpdate=lastUpdate,
-        searchUsernameByToken=searchUsernameByToken,
-        searchAvatar=searchAvatar,
-        searchHora=searchHora,
-        searchDia=searchDia,
-        searchUser=searchUser,
-        GeradorTokenSessionOverlay=GeradorTokenSessionOverlay,
     )
 
 
