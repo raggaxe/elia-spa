@@ -1,11 +1,114 @@
 .mail-body{
-    width:80%;
-    height:5500px;
-    background-image: url("/static/img/email-marketing.png") ;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% ;
     margin:0 auto;
+    text-align:center;
+    width:600px;
+    position:relative;
+
+}
+
+.img-mail{
+    width:600px;
+    left:0;
+    position:absolute;
+    height:3200px;
+    z-index:-1;
+
+
 }
 
 
+.mail-item{
+    height:1100px;
+    width:600px;
+    z-index:2;
+    position:relative;
+    display:block;
+
+}
+
+.box1{
+    position:absolute;
+    bottom:20px;
+    width:180px;
+    height:80px;
+    z-index:3;
+    right:30px;
+
+}
+
+.mail-item2{
+    height:450px;
+    width:600px;
+    z-index:2;
+    position:relative;
+    display:block;
+}
+
+.box2{
+    position:absolute;
+    bottom:30px;
+    width:180px;
+    height:80px;
+    z-index:3;
+    left:130px;
+
+}
+
+
+.mail-item3{
+    height:550px;
+    width:600px;
+    z-index:2;
+    position:relative;
+    display:block;
+}
+
+.box3{
+    position:absolute;
+    bottom:30px;
+    width:180px;
+    height:80px;
+    z-index:3;
+    right:30px;
+
+}
+
+
+.site-item{
+    height:550px;
+    width:600px;
+    z-index:2;
+    position:relative;
+    display:block;
+}
+
+.box4{
+    position:absolute;
+    top:200px;
+    width:480px;
+    height:80px;
+    z-index:3;
+    right:30px;
+
+}
+
+.box5{
+    position:absolute;
+    top:400px;
+    width:100px;
+    height:80px;
+    z-index:3;
+    left:180px;
+
+}
+
+
+.box6{
+    position:absolute;
+    top:400px;
+    width:100px;
+    height:80px;
+    z-index:3;
+    right:180px;
+
+}
